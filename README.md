@@ -21,9 +21,10 @@ AWS (Amazon Web Services) is a comprehensive, evolving cloud computing platform 
 2. **Install Terraform via Homebrew**
 
    ```sh
-   brew install terraform
+   brew tap hashicorp/tap
+   brew install hashicorp/tap/terraform
 
-3. **Install Terraform via Homebrew**
+3. **Configure AWS Profile**
 
    Ensure you have your AWS Access Key ID and Secret Access Key ready. Configure the AWS CLI with your credentials
    ```sh
@@ -41,12 +42,9 @@ AWS (Amazon Web Services) is a comprehensive, evolving cloud computing platform 
 
  * provider.tf: Configure the AWS provider with the appropriate region and profile for your new AWS account.
 
- * variables.tf: Define variables for your configuration, Created the following variables region,default profile, instance type,AMI Id and 
-   Bastion host's allowed IP range(Here we are taking this as an input but we can give default CIDR as well)
+ * variables.tf: Define variables for your configuration, Created the following variables region,default profile, instance type, AMI Id and Bastion host's allowed SSH IP range(Here we are taking this as an input but we can give default CIDR as well)
 
- * vpc.tf: Create a VPC with a specified CIDR block, allowing the definition of an isolated network environment. Within this VPC, a public     subnet is established with a specific CIDR block, enabling the launching of instances with automatic public IP assignment. An AWS      
-   Internet Gateway is also created and associated with the VPC, allowing network traffic to flow between the VPC and the public Internet. 
-   Additionally, a route table is defined within the VPC, which directs all traffic with a destination CIDR block of "0.0.0.0/0" to the Internet Gateway, enabling outgoing Internet connectivity for resources in the public subnet. Finally, the public subnet is associated with this route table, ensuring that instances within it follow the defined routing rules for Internet-bound traffic.
+ * vpc.tf: Create a VPC with a specified CIDR block, allowing the definition of an isolated network environment. Within this VPC, a public subnet is established with a specific CIDR block, enabling the launching of instances with automatic public IP assignment. An AWS Internet Gateway is also created and associated with the VPC, allowing network traffic to flow between the VPC and the public Internet. Additionally, a route table is created within the VPC, which directs all traffic with a destination CIDR block of "0.0.0.0/0" to the Internet Gateway, enabling outgoing Internet connectivity for resources in the public subnet. Finally, the public subnet is associated with this route table, ensuring that instances within it follow the defined routing rules for Internet-bound traffic.
 
  * Key.tf : This will generates a TLS private key, creates an AWS key pair associated with it, and generates a PEM file from the private key. This PEM file can be used for SSH access to AWS instances launched with the corresponding key pair
 
@@ -63,12 +61,12 @@ AWS (Amazon Web Services) is a comprehensive, evolving cloud computing platform 
 1. Clone this repository:
 
    ```sh
-   git clone https://github.com/your-username/Assessment_Bastion_Host.git
+   git clone https://github.com/vaish0299/Assessment_HU.git
 
 2. Navigate to the project directory:
 
    ```sh
-   cd image_ai_bastion
+   cd Assessment_HU
 
 3. Initialize Terraform:
 
@@ -84,6 +82,13 @@ AWS (Amazon Web Services) is a comprehensive, evolving cloud computing platform 
 
    ```sh
    terraform apply
+
+Once "terraform apply" is run, the aforementioned resources would be created using the default variables.
+
+In order to create the above network stack using self-defined variables, you may customize the command mentioned below and run it:
+terraform apply -var='profile=aws' You can replace profile=aws in the above example with variable_name=value
+
+If you have created resources using custom variables, make sure to pass the variables as well with the above command
 
 6. Follow the SSH instructions to access the Bastion host.
 
