@@ -1,5 +1,3 @@
-# Assessment_Bastion_Host
-
   # Bastion Host Setup
 
 ## Scenario
