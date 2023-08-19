@@ -83,12 +83,12 @@ AWS (Amazon Web Services) is a comprehensive, evolving cloud computing platform 
    ```sh
    terraform apply
 
-Once "terraform apply" is run, the aforementioned resources would be created using the default variables.
+   Once "terraform apply" is run, the aforementioned resources would be created using the default variables.
 
-In order to create the above network stack using self-defined variables, you may customize the command mentioned below and run it:
-terraform apply -var='profile=aws' You can replace profile=aws in the above example with variable_name=value
+   In order to create the above network stack using self-defined variables, you may customize the command mentioned below and run it:
+   terraform apply -var='profile=aws' You can replace profile=aws in the above example with variable_name=value
 
-If you have created resources using custom variables, make sure to pass the variables as well with the above command
+   If you have created resources using custom variables, make sure to pass the variables as well with the above command
 
 6. Follow the SSH instructions to access the Bastion host.
 
